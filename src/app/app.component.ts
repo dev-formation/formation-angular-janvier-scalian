@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'formation-angular-scalian';
+  private testPrivate = 'Ceci n\'est pas accessible dans le template'; 
 }
