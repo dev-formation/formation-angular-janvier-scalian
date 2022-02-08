@@ -7,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageSignUpComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+    console.log('Composant PageSignUp instancié');
+   }
 
   ngOnInit(): void {
   }
