@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageListOrdersComponent implements OnInit {
 
-  constructor() { }
-
+  constructor() { 
+    console.log('Composant list order instancié !')
+  }
+  
   ngOnInit(): void {
   }
 
+  ngOnDestroy(): void {
+    console.log('Composant list order detruit ...')
+  }
 }

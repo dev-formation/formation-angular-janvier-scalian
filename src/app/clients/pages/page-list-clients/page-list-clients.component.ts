@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageListClientsComponent implements OnInit {
 
-  constructor() { }
-
+  constructor() { 
+    console.log('Composant list client instancié !');
+  }
+  
   ngOnInit(): void {
+  }
+  
+  ngOnDestroy(): void {
+    console.log('Composant list client detruit ...');
   }
 
 }
