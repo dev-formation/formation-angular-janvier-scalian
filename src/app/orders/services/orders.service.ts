@@ -5,7 +5,7 @@ import { Order } from 'src/app/core/models/order';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'any'
+  providedIn: 'root'
 })
 export class OrdersService {
   public collection$!: Observable<Order[]>;
@@ -14,10 +14,8 @@ export class OrdersService {
   constructor(private http: HttpClient) {
     console.log('init service');
     this.collection$ = this.http.get<Order[]>(`${this.urlApi}/orders`);
-    this.collection$.subscribe(orders => {
-      console.log('récupération ', orders);
-    })
    }
+
 }
 
 

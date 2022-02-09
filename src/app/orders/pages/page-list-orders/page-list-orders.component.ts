@@ -10,6 +10,11 @@ export class PageListOrdersComponent implements OnInit {
 
   constructor(private ordersService: OrdersService) { 
     console.log('Composant list order instancié !')
+    this.ordersService.collection$.subscribe({
+        next: (data) => { console.log('Next : ', data)},
+        error: (err) => { console.error('Error : ', err)},
+        complete: () => { console.info('Fin de transmission')}
+      })
   }
   
   ngOnInit(): void {
