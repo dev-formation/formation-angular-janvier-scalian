@@ -5,21 +5,14 @@
             <td>{{ item.tjmHt }}</td>
             <td>{{ item.nbJours }}</td>
             <td>{{ item.tva }}</td>
+            <td>{{ item | total }}</td>
+            <td>{{ item | total : true }}</td>
             <td>{{ item.typePresta }}</td>
             <td>{{ item.client }}</td>
             <td>{{ item.state }}</td>
         </tr>
     </app-table-light>
-
-    <!-- Experiment api public + table component -->
-    <!-- <app-table-light [headers]="userListHeaders">
-        <tr *ngFor="let item of userList">
-            <td>{{ item.id }}</td>
-            <td>{{ item.email }}</td>
-            <td>{{ item.first_name }}</td>
-            <td>{{ item.last_name }}</td>
-        </tr>
-    </app-table-light> -->
-    
     <app-btn></app-btn>
+    <p>Premier element de ma collection : {{ demoDate | date : 'dd/MM/YYYY' }}</p>
 </app-template-full-width>
+

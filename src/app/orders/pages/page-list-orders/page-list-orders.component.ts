@@ -17,9 +17,11 @@ export class PageListOrdersComponent implements OnInit {
 
   public userList!: any;
   public userListHeaders!: string[];
+  public demoDate = new Date();
+  private count = 0;
 
   constructor(private ordersService: OrdersService, private http: HttpClient) { 
-    this.headers = ["TjmHt", "NbJours", "TVA", "Type Presta", "Client", "State"];
+    this.headers = ["TjmHt", "NbJours", "TVA", "Total HT", "Total TTC", "Type Presta", "Client", "State"];
     
     this.ordersService.collection$.subscribe({
         next: (data) => { 
@@ -35,6 +37,16 @@ export class PageListOrdersComponent implements OnInit {
       //   this.userList = resp.data;
       //   this.userListHeaders = ['id', 'email', 'prenom', 'nom'];
       // })
+  }
+
+  public total(val: number, coef: number, tva?: number): number {
+    this.count++;
+    console.warn(this.count);
+    if(tva) {
+      return val * coef * (1 + tva/100);
+    } else {
+      return val * coef;
+    }
   }
   
 
