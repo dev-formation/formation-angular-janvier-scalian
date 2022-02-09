@@ -1,7 +1,9 @@
-<!-- <app-template-full-width [title]="objTitle">
-    Exercice change detection avec Objet
- -->
+
+<!-- <app-template-full-width [title]="titleParent" *ngIf="collection"> -->
 <app-template-full-width [title]="titleParent">
-    <button (click)="onClickChangeTitle()">Changement de titre</button>
-    <p>le titre du parent est {{ titleParent }}</p>
+    <app-table-light 
+        [headers]="headers"
+        [collection]="collection" 
+    ></app-table-light>
+    <app-btn></app-btn>
 </app-template-full-width>

@@ -11,7 +11,6 @@ export class HeaderComponent implements OnInit {
 
   constructor(private versionService: VersionService) {
     this.versionService.numVersion$.subscribe(numVersion => {
-      console.log('Reception du numero de version dans le header', numVersion);
       this.version = numVersion;
     })
    }

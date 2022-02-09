@@ -10,7 +10,4 @@ export class AppComponent {
   title = 'formation-angular-scalian';
   private testPrivate = 'Ceci n\'est pas accessible dans le template'; 
 
-  constructor(private router: Router) {
-    console.log("router : ", router.config);
-  }
 }

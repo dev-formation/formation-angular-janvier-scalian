@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Order } from 'src/app/core/models/order';
 import { OrdersService } from '../../services/orders.service';
 
 @Component({
@@ -8,33 +9,29 @@ import { OrdersService } from '../../services/orders.service';
 })
 export class PageListOrdersComponent implements OnInit {
   public titleParent = 'Liste de commandes';
-  
-  // public objTitle: { titleParent: string};
-  // Exercice change detection avec Objet
-  
+  public collection!: Order[];
+  public headers: string[];
+
+  public titleTest = 'Le titre de mon composant';
+
   constructor(private ordersService: OrdersService) { 
-    console.log('Composant list order instancié !')
+    this.headers = ["TjmHt", "NbJours", "TVA", "Type Presta", "Client", "State"];
+    
     this.ordersService.collection$.subscribe({
-        next: (data) => { console.log('Next : ', data)},
+        next: (data) => { 
+          console.log('Next : ', data);
+          this.collection = data;
+        },
         error: (err) => { console.error('Error : ', err)},
         complete: () => { console.info('Fin de transmission')}
       })
 
-    // this.objTitle = { titleParent : "Notre titre dans un objet" };
-    // Exercice change detection avec Objet
   }
   
 
   ngOnInit(): void {
   }
 
-  public onClickChangeTitle(): void {
-    this.titleParent = 'Un autre titre !';
-    // this.objTitle = {titleParent : "Encore un autre titre"};
-    // Exercice change detection avec Objet
-  }
-
   ngOnDestroy(): void {
-    console.log('Composant list order detruit ...')
   }
 }
