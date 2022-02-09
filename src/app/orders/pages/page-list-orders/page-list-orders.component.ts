@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Order } from 'src/app/core/models/order';
 import { OrdersService } from '../../services/orders.service';
@@ -14,7 +15,10 @@ export class PageListOrdersComponent implements OnInit {
 
   public titleTest = 'Le titre de mon composant';
 
-  constructor(private ordersService: OrdersService) { 
+  public userList!: any;
+  public userListHeaders!: string[];
+
+  constructor(private ordersService: OrdersService, private http: HttpClient) { 
     this.headers = ["TjmHt", "NbJours", "TVA", "Type Presta", "Client", "State"];
     
     this.ordersService.collection$.subscribe({
@@ -25,7 +29,12 @@ export class PageListOrdersComponent implements OnInit {
         error: (err) => { console.error('Error : ', err)},
         complete: () => { console.info('Fin de transmission')}
       })
-
+      
+      //Experiment api public + table component
+      // this.http.get('https://reqres.in/api/users').subscribe((resp: any) => {
+      //   this.userList = resp.data;
+      //   this.userListHeaders = ['id', 'email', 'prenom', 'nom'];
+      // })
   }
   
 
