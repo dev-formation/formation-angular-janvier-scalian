@@ -1,7 +1,7 @@
-<form [formGroup]="form">
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="form-group">
         <label for="typePresta">type</label>
-        <input type="text" class="form-control" id="typePresta" formControlName="type">
+        <input type="text" class="form-control" id="typePresta" formControlName="typePresta">
 
     </div>
 
