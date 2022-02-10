@@ -64,7 +64,7 @@ export class PageListOrdersComponent implements OnInit {
   public onChangeState(order: Order, event: any): void {
     this.ordersService.changeState(order, event.target.value).subscribe(
       (data: Order) => {
-        order = data;
+        order.state = data.state;
       }
     )
   }

@@ -9,8 +9,13 @@
             <td>{{ item | total : true | currency }}</td>
             <td>{{ item.typePresta }}</td>
             <td>{{ item.client }}</td>
-            <!-- <td>{{ item.state }}</td> -->
-            <td>
+            <!-- <td [ngClass]="{
+                'state-option': item.state === 'OPTION',
+                'state-confirmed': item.state === 'CONFIRMED',
+                'state-canceled': item.state === 'CANCELED'}">  -->
+            <!-- Version beta -->
+            <!-- <td class="state-{{item.state| lowercase}}"> v.2-->
+            <td [appState]="item.state">
                 <select (change)="onChangeState(item, $event)">
                     <option *ngFor="let state of stateOrder | keyvalue"
                             [value]="state.key"
@@ -22,7 +27,5 @@
         </tr>
     </app-table-light>
     <app-btn></app-btn>
-    <p>Premier element de ma collection : {{ demoDate | date : 'dd/MM/YYYY' }}</p>
-    <p *ngIf="numVersion$ | async as version ">Version n° {{ version }}</p>
 </app-template-full-width>
 
