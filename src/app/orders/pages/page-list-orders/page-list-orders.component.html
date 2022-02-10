@@ -5,11 +5,20 @@
             <td>{{ item.tjmHt }}</td>
             <td>{{ item.nbJours }}</td>
             <td>{{ item.tva }}</td>
-            <td>{{ item | total }}</td>
-            <td>{{ item | total : true }}</td>
+            <td>{{ item | total | currency }}</td>
+            <td>{{ item | total : true | currency }}</td>
             <td>{{ item.typePresta }}</td>
             <td>{{ item.client }}</td>
-            <td>{{ item.state }}</td>
+            <!-- <td>{{ item.state }}</td> -->
+            <td>
+                <select (change)="onChangeState(item, $event)">
+                    <option *ngFor="let state of stateOrder | keyvalue"
+                            [value]="state.key"
+                            [selected]="state.key === item.state">
+                        {{state.value}}
+                    </option>
+                </select>
+            </td>
         </tr>
     </app-table-light>
     <app-btn></app-btn>

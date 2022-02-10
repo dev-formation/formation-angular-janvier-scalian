@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { StateOrder } from 'src/app/core/enums/state-order';
 import { Order } from 'src/app/core/models/order';
 import { VersionService } from 'src/app/core/services/version.service';
 import { OrdersService } from '../../services/orders.service';
@@ -13,7 +14,7 @@ import { OrdersService } from '../../services/orders.service';
 export class PageListOrdersComponent implements OnInit {
   public titleParent = 'Liste de commandes';
   // public collection!: Order[];
-  public collection$!: Observable<Order[]>;
+  public collection$: Observable<Order[]>;
   public numVersion$: BehaviorSubject<number>;
   public headers: string[];
 
@@ -22,6 +23,8 @@ export class PageListOrdersComponent implements OnInit {
   public userList!: any;
   public userListHeaders!: string[];
   public demoDate = new Date();
+
+  public stateOrder = StateOrder;
   
   private count = 0;
   // private subNumVersion: Subscription;
@@ -56,6 +59,14 @@ export class PageListOrdersComponent implements OnInit {
   
 
   ngOnInit(): void {
+  }
+
+  public onChangeState(order: Order, event: any): void {
+    this.ordersService.changeState(order, event.target.value).subscribe(
+      (data: Order) => {
+        order = data;
+      }
+    )
   }
 
   ngOnDestroy(): void {
