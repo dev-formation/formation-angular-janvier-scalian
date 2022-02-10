@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { StateOrder } from 'src/app/core/enums/state-order';
 import { Order } from 'src/app/core/models/order';
 
@@ -20,9 +20,9 @@ export class FormOrderComponent implements OnInit {
     // V1 à la manière de la doc
     // this.form = new FormGroup({
     //   tjmHt: new FormControl(this.init.tjmHt),
-    //   type: new FormControl(this.init.typePresta),
+    //   typePresta: new FormControl(this.init.typePresta, Validators.required),
     //   nbJours: new FormControl(this.init.nbJours),
-    //   client: new FormControl(this.init.client),
+    //   client: new FormControl(this.init.client, [Validators.required, Validators.minLength(2)]),
     //   tva: new FormControl(this.init.tva),
     //   state: new FormControl(this.init.state),
     //   comment: new FormControl(this.init.comment)
@@ -31,13 +31,13 @@ export class FormOrderComponent implements OnInit {
     // manière concise
     this.form = this.fb.group({
       tjmHt: [this.init.tjmHt],
-      typePresta: [this.init.typePresta],
+      typePresta: [this.init.typePresta, Validators.required],
       nbJours: [this.init.nbJours],
-      client: [this.init.client],
+      client: [this.init.client, [Validators.required, Validators.minLength(2)]],
       tva: [this.init.tva],
       state: [this.init.state],
       comment: [this.init.comment]
-    })
+    });
   }
 
   public onSubmit(): void {
