@@ -8,6 +8,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { NavComponent } from './components/nav/nav.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RouterModule } from '@angular/router';
+import { ModalMsgComponent } from './components/modal-msg/modal-msg.component';
 
 
 
@@ -15,7 +16,8 @@ import { RouterModule } from '@angular/router';
   declarations: [
     HeaderComponent,
     NavComponent,
-    FooterComponent
+    FooterComponent,
+    ModalMsgComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +30,8 @@ import { RouterModule } from '@angular/router';
     LoginModule,
     HeaderComponent,
     NavComponent,
-    FooterComponent
+    FooterComponent,
+    ModalMsgComponent
   ] 
 })
 export class CoreModule { }
