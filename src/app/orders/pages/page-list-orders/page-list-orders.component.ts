@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 import { StateOrder } from 'src/app/core/enums/state-order';
 import { Order } from 'src/app/core/models/order';
 import { VersionService } from 'src/app/core/services/version.service';
@@ -15,7 +15,8 @@ import { OrdersService } from '../../services/orders.service';
 export class PageListOrdersComponent implements OnInit {
   public titleParent = 'Liste de commandes';
   // public collection!: Order[];
-  public collection$: Observable<Order[]>;
+  // public collection$: Observable<Order[]>;
+  public subCollection$: Subject<Order[]>;
   public numVersion$: BehaviorSubject<number>;
   public headers: string[];
 
@@ -34,9 +35,11 @@ export class PageListOrdersComponent implements OnInit {
     private ordersService: OrdersService,
     private versionService: VersionService,
     private router: Router) { 
-    this.headers = ["", "TjmHt", "NbJours", "TVA", "Total HT", "Total TTC", "Type Presta", "Client", "State"];
+    this.headers = ["","", "TjmHt", "NbJours", "TVA", "Total HT", "Total TTC", "Type Presta", "Client", "State"];
     
-    this.collection$ = this.ordersService.collection$;
+    // this.collection$ = this.ordersService.collection$;
+    this.subCollection$ = this.ordersService.subCollection$;
+    this.ordersService.refreshCollection();
 
     // this.ordersService.collection$.subscribe({
     //     next: (data) => { 
@@ -77,6 +80,14 @@ export class PageListOrdersComponent implements OnInit {
     // redirection vers une url du type /orders/edit/order.id
     // this.router.navigate(['orders', 'edit', order.id]);
     this.router.navigateByUrl(`/orders/edit/${order.id}`);
+  }
+
+  public onClickDelete(order: Order): void {
+    console.log(order.id);
+    //TODO  faire appel à notre service en souscrivant
+    this.ordersService.deleteById(order.id).subscribe((resp) => {
+      console.log("Suppression successful : ", resp);
+    });
   }
 
   ngOnDestroy(): void {
