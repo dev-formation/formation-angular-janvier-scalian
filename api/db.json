@@ -73,11 +73,11 @@
   ],
   "clients": [
     {
+      "name": "Capgemini",
       "state": "INACTIVE",
       "tva": 20,
       "id": 1,
-      "name": "Capgemini",
-      "totalCaHt": 120000,
+      "totalCaHt": "12",
       "comment": "un comment pour client modis"
     },
     {
@@ -89,12 +89,12 @@
       "comment": "un comment pour client modis"
     },
     {
+      "name": "Scalian",
+      "state": "ACTIVE",
       "tva": 20,
-      "state": "INACTIVE",
-      "name": "Atos",
-      "totalCaHt": 0,
-      "comment": "Ancien client",
-      "id": 3
+      "id": 3,
+      "totalCaHt": "29893",
+      "comment": null
     }
   ]
 }
