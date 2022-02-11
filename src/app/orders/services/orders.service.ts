@@ -35,4 +35,8 @@ export class OrdersService {
     return this.http.post<Order>(`${this.urlApi}/orders`, order);
   }
 
+  public getById(orderId: number): Observable<Order> {
+    return this.http.get<Order>(`${this.urlApi}/orders/${orderId}`);
+  }
+
 }

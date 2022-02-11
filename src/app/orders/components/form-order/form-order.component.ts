@@ -36,7 +36,8 @@ export class FormOrderComponent implements OnInit {
       client: [this.init.client, [Validators.required, Validators.minLength(2)]],
       tva: [this.init.tva],
       state: [this.init.state],
-      comment: [this.init.comment]
+      comment: [this.init.comment],
+      id: [this.init.id]
     });
   }
 

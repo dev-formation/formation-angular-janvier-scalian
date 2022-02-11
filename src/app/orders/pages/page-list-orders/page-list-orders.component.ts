@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { StateOrder } from 'src/app/core/enums/state-order';
 import { Order } from 'src/app/core/models/order';
@@ -29,8 +30,11 @@ export class PageListOrdersComponent implements OnInit {
   private count = 0;
   // private subNumVersion: Subscription;
 
-  constructor(private ordersService: OrdersService, private versionService: VersionService) { 
-    this.headers = ["TjmHt", "NbJours", "TVA", "Total HT", "Total TTC", "Type Presta", "Client", "State"];
+  constructor(
+    private ordersService: OrdersService,
+    private versionService: VersionService,
+    private router: Router) { 
+    this.headers = ["", "TjmHt", "NbJours", "TVA", "Total HT", "Total TTC", "Type Presta", "Client", "State"];
     
     this.collection$ = this.ordersService.collection$;
 
@@ -67,6 +71,12 @@ export class PageListOrdersComponent implements OnInit {
         order.state = data.state;
       }
     )
+  }
+
+  public onClickGoToEdit(order: Order): void {
+    // redirection vers une url du type /orders/edit/order.id
+    // this.router.navigate(['orders', 'edit', order.id]);
+    this.router.navigateByUrl(`/orders/edit/${order.id}`);
   }
 
   ngOnDestroy(): void {
